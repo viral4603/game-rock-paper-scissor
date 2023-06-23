@@ -1,0 +1,286 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;600;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-image: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+    padding: 50px 40px;
+
+    .game-score {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.5rem;
+        width: 60vw;
+        margin: 0 auto;
+        border: 3px solid rgb(96, 110, 133);
+        border-radius: 0.75rem;
+
+        .brand-logo {
+            width: 150px;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .score-board {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 10px 50px;
+            background: hsl(0, 0%, 100%);
+            border-radius: 1rem;
+
+            .score-title {
+                font-weight: 600;
+                letter-spacing: 3px;
+                color: hsl(229, 64%, 46%);
+            }
+
+            .score-count {
+                margin: 0 auto;
+                font-size: 3.25rem;
+                font-weight: 600;
+                color: hsl(229, 25%, 31%);
+            }
+        }
+    }
+
+    .game-play {
+        flex-grow: 1;
+        position: relative;
+        margin: 150px auto;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        .background-image {
+            width: 400px;
+        }
+    }
+
+    .show-result-mobile {
+        display: none;
+    }
+
+    .select-title {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        color: #ffffff;
+        margin-bottom: 3rem;
+    }
+
+    .play-again {
+        cursor: pointer;
+        padding: 1rem 3.5rem;
+        border-radius: 0.85rem;
+        border: none;
+        font-size: 1rem;
+        text-wrap: nowrap;
+        letter-spacing: 2px;
+        font-weight: 700;
+        transition: all 0.3s;
+
+        &:hover {
+            color: #e41010;
+        }
+    }
+
+    .result-title {
+        font-size: 3rem;
+        letter-spacing: 2px;
+        color: #ffffff;
+        padding: 25px 0px;
+        text-align: center;
+
+    }
+
+    .result {
+        display: flex;
+        width: 60vw;
+        justify-content: space-between;
+        align-items: center;
+
+
+    }
+
+    .rules-btn {
+        float: right;
+        cursor: pointer;
+        padding: 0.75rem 2.5rem;
+        background: transparent;
+        border-radius: 0.5rem;
+        color: hsl(0, 0%, 100%);
+        letter-spacing: 3px;
+        border: 1px solid hsl(0, 0%, 100%);
+        text-transform: uppercase;
+    }
+
+    .select-button {
+        cursor: pointer;
+        position: absolute;
+        height: 190px;
+        width: 190px;
+        border-radius: 100%;
+        flex-grow: 1;
+        flex-shrink: 0;
+        border: none;
+
+        .button-icon {
+            height: 150px;
+            width: 150px;
+            background: white;
+            display: flex;
+            border-radius: 100%;
+            margin: auto;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 0 3px #b7c3d6 inset;
+            transition: all 0.3s;
+        }
+
+        &:active .button-icon {
+            box-shadow: none;
+        }
+
+        &.paper {
+            top: -20%;
+            left: -10%;
+            box-shadow: 0px 4px 0px 1px rgb(34 64 208);
+            background: -webkit-linear-gradient(left top, hsl(230, 89%, 62%) 0%, rgb(86, 113, 245) 100%)
+        }
+
+        &.scissor {
+            top: -20%;
+            right: -10%;
+            box-shadow: 0px 4px 0px 1px rgb(184 127 15);
+            background: -webkit-linear-gradient(left top, hsl(39, 89%, 49%) 0%, hsl(40, 84%, 53%) 100%)
+        }
+
+        &.rock {
+            bottom: 0;
+            right: calc(50% - 80px);
+            box-shadow: 0px 4px 0px 1px rgb(181 30 57);
+            background: -webkit-linear-gradient(left top, hsl(349, 71%, 52%) 0%, hsl(349, 70%, 56%) 100%)
+        }
+    }
+
+    .paper,
+    .scissor,
+    .rock {
+        &.selected {
+            position: static;
+        }
+    }
+
+    .rules-container {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        z-index: 99;
+        background: rgba(20, 21, 57, 0.5);
+
+        .rules-box {
+            padding: 30px;
+            border-radius: 1rem;
+            background: #ffffff;
+
+            .rules-header {
+                display: flex;
+                margin-bottom: 1rem;
+                align-items: center;
+                justify-content: space-between;
+
+                img {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+//responsive css
+@media only screen and (max-width: 768px) {
+    .game-container {
+        .game-score {
+            width: 90vw;
+        }
+
+        .result {
+            width: 90vw;
+
+            .computer-pick {
+                text-align: center;
+            }
+        }
+
+        .game-play {
+ 
+            .show-result {
+                display: none;
+            }
+
+            .show-result-mobile {
+                display: block;
+                margin: 4rem auto 0;
+
+                .result-button-mobile {
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+        }
+
+        .select-button {
+            height: 160px;
+            width: 160px;
+
+            .button-icon {
+                height: 130px;
+                width: 130px;
+            }
+
+        }
+    }
+}
+
+//mobile
+@media only screen and (max-width: 556px) {
+    .game-container {
+        padding: 30px;
+
+        .game-score {
+            width: 90vw;
+
+            .brand-logo {
+                width: 120px;
+            }
+
+            .score-board {
+
+                .score-count {
+                    font-size: 2.5rem;
+                }
+            }
+        }
+
+    }
+}

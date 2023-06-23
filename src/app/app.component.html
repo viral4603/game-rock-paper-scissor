@@ -1,0 +1,64 @@
+<div class="game-container">
+  <ng-container *ngIf="isRulesModelOpen">
+    <app-rules (closeRulesModel)="openCloseModel()"></app-rules>
+  </ng-container>
+  <!-- game-score-start -->
+  <header class="game-score">
+    <figure class="brand-logo">
+      <img src="../assets/images/logo.svg" alt="banner-logo">
+    </figure>
+    <!-- score-board-start -->
+    <div class="score-board">
+      <h5 class="score-title">SCORE</h5>
+      <h2 class="score-count">{{score}}</h2>
+    </div>
+    <!-- score-board-end -->
+  </header>
+  <!-- game-score-end -->
+
+  <!-- game-play-start -->
+  <section class="game-play">
+    <ng-template [ngIf]="!isUserSelect">
+      <img src="../assets/images/bg-triangle.svg" class="background-image" alt="triangle image" >
+      <!-- paper-component-start -->
+      <app-select-button [buttonName]="paper" (userSelect)="userSelect($event)"></app-select-button>
+      <!-- paper-component-end -->
+      <!-- scissor-component-start -->
+      <app-select-button [buttonName]="scissor" (userSelect)="userSelect($event)"></app-select-button>
+      <!-- scissor-component-end -->
+      <!-- rock-component-start -->
+      <app-select-button [buttonName]="rock" (userSelect)="userSelect($event)"></app-select-button>
+      <!-- rock-component-end -->
+    </ng-template>
+
+    <!-- result-component-start -->
+    <div *ngIf="isUserSelect" class="result">
+      <div class="user-pick">
+        <h3 class="select-title">YOU PICKED</h3>
+        <app-select-button [buttonName]="isUserSelect" [decided]="userDecided" (userSelect)="userSelect($event)"
+          @openAnimation></app-select-button>
+      </div>
+      <div class="show-result" @openAnimationComputer>
+        <h2 class="result-title">{{result}}</h2>
+        <button type="button" class="play-again" (click)="resetGame()">PLAY AGAIN</button>
+      </div>
+      <div class="computer-pick">
+        <h3 class="select-title">THE HOUSE PICKED</h3>
+        <app-select-button [buttonName]="computerSelect" [decided]="userDecided" (userSelect)="userSelect($event)"
+          @openAnimationComputer></app-select-button>
+      </div>
+    </div>
+    <div *ngIf="isUserSelect" class="show-result-mobile" @openAnimationComputer>
+      <h2 class="result-title">{{result}}</h2>
+      <div class="result-button-mobile">
+        <button type="button" class="play-again" (click)="resetGame()">PLAY AGAIN</button>
+      </div>
+    </div>
+    <!-- result-component-end -->
+
+  </section>
+  <div>
+    <button class="rules-btn" type="button" (click)="openCloseModel()">Rules</button>
+  </div>
+  <!-- game-play-end -->
+</div>

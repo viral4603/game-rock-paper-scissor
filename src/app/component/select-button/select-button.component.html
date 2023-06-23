@@ -1,0 +1,5 @@
+<button type="button" class="select-button" [ngClass]="[decided ? 'selected':'', buttonType]" (click)="selectValue(buttonType)">
+    <figure class="button-icon">
+        <img src="../assets/images/{{buttonType}}.svg" alt="paper image">
+    </figure>
+</button>
