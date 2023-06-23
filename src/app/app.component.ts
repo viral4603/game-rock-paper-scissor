@@ -33,7 +33,7 @@ export class AppComponent {
   public computerSelect: string = ''
   public userDecided: boolean = false;
   public result: string = '';
-  public isRulesModelOpen:boolean = false;
+  public isRulesModelOpen: boolean = false;
 
   public resultObject: any = {
     paper: {
@@ -65,6 +65,11 @@ export class AppComponent {
       this.result = this.resultObject[this.isUserSelect][this.computerSelect];
       if (this.result === 'YOU WON') {
         this.score++;
+      }
+      else if (this.result === 'YOU LOSE') {
+        if (this.score > 0) {
+          this.score--;
+        }
       }
     }
   }
