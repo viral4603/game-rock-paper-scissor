@@ -111,11 +111,15 @@ body {
     .result {
         display: flex;
         width: 60vw;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
+        text-align: center;
 
-
+        &.show {
+            justify-content: space-between;
+        }
     }
+
 
     .rules-btn {
         float: right;
@@ -150,6 +154,7 @@ body {
             justify-content: center;
             box-shadow: 0 3px 0 3px #b7c3d6 inset;
             transition: all 0.3s;
+            
         }
 
         &:active .button-icon {
@@ -226,6 +231,11 @@ body {
 
         .result {
             width: 90vw;
+            justify-content: space-between;
+
+            &.show {
+                justify-content: space-between;
+            }
 
             .computer-pick {
                 text-align: center;
@@ -233,7 +243,7 @@ body {
         }
 
         .game-play {
- 
+
             .show-result {
                 display: none;
             }

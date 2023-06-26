@@ -1,6 +1,8 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 
+import { Colors, Result } from './model';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,12 +17,19 @@ import { Component } from '@angular/core';
     trigger('openAnimationComputer', [
       transition(':enter', [
         style({ opacity: 0 }),
-        animate(500, style({ opacity: 0 })),
+        animate(1000, style({ opacity: 0 })),
         animate(1000, style({ opacity: 1 })),
       ])
     ]),
+    trigger('resultAnimation', [
+      transition(':enter', [
+        style({ transform: 'scale(1)' }),
+        animate(1000, style({ transform: 'scale(1.1)' })),
+        animate(1000, style({ transform: 'scale(1)' }))
+      ])])
   ]
 })
+
 export class AppComponent {
 
   title = 'rock-paper-scissors';
@@ -34,6 +43,8 @@ export class AppComponent {
   public userDecided: boolean = false;
   public result: string = '';
   public isRulesModelOpen: boolean = false;
+  public showResult: boolean = false;
+
 
   public resultObject: any = {
     paper: {
@@ -52,6 +63,10 @@ export class AppComponent {
       scissor: 'IT\'\S A TIE',
     }
   }
+  constructor() {
+    console.log(Colors.RED)
+    console.log(Result)
+  }
 
   /**
    * @description user select decision
@@ -63,14 +78,17 @@ export class AppComponent {
       this.computerSelect = this.randomIntFromInterval()
       this.userDecided = true;
       this.result = this.resultObject[this.isUserSelect][this.computerSelect];
-      if (this.result === 'YOU WON') {
-        this.score++;
-      }
-      else if (this.result === 'YOU LOSE') {
-        if (this.score > 0) {
-          this.score--;
+      setTimeout(() => {
+        if (this.result === 'YOU WON') {
+          this.score++;
         }
-      }
+        else if (this.result === 'YOU LOSE') {
+          if (this.score > 0) {
+            this.score--;
+          }
+        }
+        this.showResult = true;
+      }, 2000)
     }
   }
 
@@ -96,6 +114,7 @@ export class AppComponent {
   public resetGame() {
     this.isUserSelect = '';
     this.userDecided = false;
+    this.showResult = false;
   }
 
 
