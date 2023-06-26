@@ -78,7 +78,9 @@ body {
 
     .select-title {
         font-size: 1.5rem;
+        font-weight: 600;
         letter-spacing: 2px;
+        text-wrap: nowrap;
         color: #ffffff;
         margin-bottom: 3rem;
     }
@@ -100,9 +102,11 @@ body {
     }
 
     .result-title {
+        font-weight: 600;
         font-size: 3rem;
         letter-spacing: 2px;
         color: #ffffff;
+        text-wrap:nowrap;
         padding: 25px 0px;
         text-align: center;
 
@@ -111,13 +115,9 @@ body {
     .result {
         display: flex;
         width: 60vw;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
         text-align: center;
-
-        &.show {
-            justify-content: space-between;
-        }
     }
 
 
@@ -142,6 +142,9 @@ body {
         flex-grow: 1;
         flex-shrink: 0;
         border: none;
+        &.selected {
+            margin: 0 50px;
+        }
 
         .button-icon {
             height: 150px;
@@ -231,10 +234,9 @@ body {
 
         .result {
             width: 90vw;
-            justify-content: space-between;
 
             &.show {
-                justify-content: space-between;
+
             }
 
             .computer-pick {

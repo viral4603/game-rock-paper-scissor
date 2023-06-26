@@ -20,9 +20,8 @@ import { Component } from '@angular/core';
     ]),
     trigger('resultAnimation', [
       transition(':enter', [
-        style({ transform: 'scale(1)' }),
-        animate(1000, style({ transform: 'scale(1.1)' })),
-        animate(1000, style({ transform: 'scale(1)' }))
+        style({ width: 0, visibility: 'hidden', transform:'scale(0)'}),
+        animate(1500, style({ width: 'inherit' })),
       ])])
   ]
 })
