@@ -1,8 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
-
-import { Colors, Result } from './model';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -63,10 +60,7 @@ export class AppComponent {
       scissor: 'IT\'\S A TIE',
     }
   }
-  constructor() {
-    console.log(Colors.RED)
-    console.log(Result)
-  }
+
 
   /**
    * @description user select decision
