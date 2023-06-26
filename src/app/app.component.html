@@ -1,7 +1,10 @@
 <div class="game-container">
+  <!-- rules-start -->
   <ng-container *ngIf="isRulesModelOpen">
     <app-rules (closeRulesModel)="openCloseModel()"></app-rules>
   </ng-container>
+  <!-- rules-end -->
+
   <!-- game-score-start -->
   <header class="game-score">
     <figure class="brand-logo">
@@ -19,7 +22,7 @@
   <!-- game-play-start -->
   <section class="game-play">
     <ng-template [ngIf]="!isUserSelect">
-      <img src="../assets/images/bg-triangle.svg" class="background-image" alt="triangle image" >
+      <img src="../assets/images/bg-triangle.svg" class="background-image" alt="triangle image">
       <!-- paper-component-start -->
       <app-select-button [buttonName]="paper" (userSelect)="userSelect($event)"></app-select-button>
       <!-- paper-component-end -->
@@ -32,30 +35,35 @@
     </ng-template>
 
     <!-- result-component-start -->
-    <div *ngIf="isUserSelect" class="result">
-      <div class="user-pick">
-        <h3 class="select-title">YOU PICKED</h3>
-        <app-select-button [buttonName]="isUserSelect" [decided]="userDecided" (userSelect)="userSelect($event)"
-          @openAnimation></app-select-button>
+    <ng-container *ngIf="isUserSelect">
+      <div class="result" [ngClass]="[showResult ? 'show' : '']">
+        <div class="user-pick">
+          <h3 class="select-title">YOU PICKED</h3>
+          <app-select-button [buttonName]="isUserSelect" [decided]="userDecided" (userSelect)="userSelect($event)"
+            @openAnimation></app-select-button>
+        </div>
+        <!-- result-desktop-preview-start -->
+        <div *ngIf="showResult" class="show-result" @resultAnimation>
+          <h2 class="result-title">{{result}}</h2>
+          <button type="button" class="play-again" (click)="resetGame()">PLAY AGAIN</button>
+        </div>
+        <!-- result-desktop-preview-end -->
+        <div class="computer-pick" @openAnimationComputer>
+          <h3 class="select-title">THE HOUSE PICKED</h3>
+          <app-select-button [buttonName]="computerSelect" [decided]="userDecided" (userSelect)="userSelect($event)"
+            @openAnimationComputer></app-select-button>
+        </div>
       </div>
-      <div class="show-result" @openAnimationComputer>
-        <h2 class="result-title">{{result}}</h2>
-        <button type="button" class="play-again" (click)="resetGame()">PLAY AGAIN</button>
-      </div>
-      <div class="computer-pick">
-        <h3 class="select-title">THE HOUSE PICKED</h3>
-        <app-select-button [buttonName]="computerSelect" [decided]="userDecided" (userSelect)="userSelect($event)"
-          @openAnimationComputer></app-select-button>
-      </div>
-    </div>
-    <div *ngIf="isUserSelect" class="show-result-mobile" @openAnimationComputer>
+    </ng-container>
+    <!-- result-mobile-preview-start -->
+    <div *ngIf="showResult" class="show-result-mobile" @resultAnimation>
       <h2 class="result-title">{{result}}</h2>
       <div class="result-button-mobile">
         <button type="button" class="play-again" (click)="resetGame()">PLAY AGAIN</button>
       </div>
     </div>
+    <!-- result-mobile-preview-end -->
     <!-- result-component-end -->
-
   </section>
   <div>
     <button class="rules-btn" type="button" (click)="openCloseModel()">Rules</button>
